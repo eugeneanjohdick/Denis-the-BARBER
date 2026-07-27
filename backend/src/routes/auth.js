@@ -1,8 +1,10 @@
 const express = require("express");
+const bcrypt = require("bcryptjs");
 const config = require("../config/env");
 const { createOtp, verifyOtp } = require("../services/otpStore");
 const { sendOtpCode } = require("../services/whatsappOtp");
 const { findOrCreateClientByPhone } = require("../services/clients");
+const { findStaffByUsername } = require("../services/staff");
 const { signToken } = require("../services/tokens");
 const { createRateLimiter } = require("../middlewares/rateLimit");
 
@@ -20,6 +22,12 @@ const otpVerifyLimiter = createRateLimiter({
   windowMs: 15 * 60 * 1000,
   max: 10,
   message: "Trop de tentatives, réessaie dans quelques minutes.",
+});
+
+const adminLoginLimiter = createRateLimiter({
+  windowMs: 15 * 60 * 1000,
+  max: 5,
+  message: "Trop de tentatives de connexion, réessaie dans quelques minutes.",
 });
 
 router.post("/otp/request", otpRequestLimiter, async (req, res, next) => {
@@ -58,6 +66,30 @@ router.post("/otp/verify", otpVerifyLimiter, async (req, res, next) => {
     const token = signToken({ sub: client.id, role: "client" });
 
     res.status(200).json({ token, client: { id: client.id, phone: client.phone_whatsapp } });
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post("/admin/login", adminLoginLimiter, async (req, res, next) => {
+  try {
+    const { username, pin } = req.body;
+    if (!username || !pin) {
+      return res.status(400).json({ error: "Identifiant et PIN requis" });
+    }
+
+    const staff = await findStaffByUsername(username);
+    if (!staff || !staff.pin_hash) {
+      return res.status(401).json({ error: "Identifiants invalides" });
+    }
+
+    const match = await bcrypt.compare(pin, staff.pin_hash);
+    if (!match) {
+      return res.status(401).json({ error: "Identifiants invalides" });
+    }
+
+    const token = signToken({ sub: staff.id, role: "admin" }, "7d");
+    res.status(200).json({ token, staff: { id: staff.id, full_name: staff.full_name } });
   } catch (err) {
     next(err);
   }
