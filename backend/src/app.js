@@ -17,7 +17,6 @@ app.get("/health", (req, res) => {
   });
 });
 
-// Non protégé — sera verrouillé derrière requireAdmin en Brique 5
 app.use("/debug", debugRouter);
 
 module.exports = app;

@@ -1,8 +1,11 @@
 const express = require("express");
 const airtableClient = require("../services/airtableClient");
 const { cachedList } = require("../services/airtableCache");
+const { requireAdmin } = require("../middlewares/auth");
 
 const router = express.Router();
+
+router.use(requireAdmin);
 
 router.get("/airtable-calls", (req, res) => {
   res.json(airtableClient.getCallStats());
