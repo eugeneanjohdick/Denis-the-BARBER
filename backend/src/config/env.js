@@ -27,6 +27,8 @@ const config = {
   metaWhatsapp: {
     token: process.env.META_WHATSAPP_TOKEN,
     phoneNumberId: process.env.META_WHATSAPP_PHONE_NUMBER_ID,
+    otpTemplateName: process.env.META_WHATSAPP_OTP_TEMPLATE_NAME || "hello_world",
+    otpTemplateLang: process.env.META_WHATSAPP_OTP_TEMPLATE_LANG || "en_US",
   },
 };
 

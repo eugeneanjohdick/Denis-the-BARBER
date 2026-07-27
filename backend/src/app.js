@@ -1,7 +1,10 @@
 const express = require("express");
 const debugRouter = require("./routes/debug");
+const authRouter = require("./routes/auth");
 
 const app = express();
+
+app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("OK");
@@ -18,5 +21,11 @@ app.get("/health", (req, res) => {
 });
 
 app.use("/debug", debugRouter);
+app.use("/auth", authRouter);
+
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(err.status || 500).json({ error: "Erreur serveur" });
+});
 
 module.exports = app;
