@@ -11,12 +11,16 @@ const LanguageContext = createContext(null);
 
 export function LanguageProvider({ children }) {
   const [language, setLanguageState] = useState(DEFAULT_LANGUAGE);
+  // Distingue "aucun choix enregistre" (premier lancement) de "a choisi fr",
+  // qui seraient sinon indiscernables puisque fr est aussi la langue par defaut.
+  const [hasSelectedLanguage, setHasSelectedLanguage] = useState(false);
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
     AsyncStorage.getItem(STORAGE_KEY).then((stored) => {
       if (stored === "fr" || stored === "en") {
         setLanguageState(stored);
+        setHasSelectedLanguage(true);
       }
       setReady(true);
     });
@@ -24,6 +28,7 @@ export function LanguageProvider({ children }) {
 
   const setLanguage = useCallback((lang) => {
     setLanguageState(lang);
+    setHasSelectedLanguage(true);
     AsyncStorage.setItem(STORAGE_KEY, lang);
   }, []);
 
@@ -31,7 +36,11 @@ export function LanguageProvider({ children }) {
 
   if (!ready) return null;
 
-  return <LanguageContext.Provider value={{ language, setLanguage, t }}>{children}</LanguageContext.Provider>;
+  return (
+    <LanguageContext.Provider value={{ language, setLanguage, hasSelectedLanguage, t }}>
+      {children}
+    </LanguageContext.Provider>
+  );
 }
 
 export function useTranslation() {
