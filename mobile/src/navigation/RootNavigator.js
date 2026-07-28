@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import StyleGuideScreen from "../screens/StyleGuideScreen";
+import HomeScreen from "../screens/HomeScreen";
 import LanguageSelectionScreen from "../screens/LanguageSelectionScreen";
 import { SALON_NAME } from "../constants/brand";
 import { useTranslation } from "../i18n/LanguageContext";
@@ -14,7 +14,7 @@ export default function RootNavigator() {
       {!hasSelectedLanguage ? (
         <Stack.Screen name="LanguageSelection" component={LanguageSelectionScreen} options={{ headerShown: false }} />
       ) : (
-        <Stack.Screen name="StyleGuide" component={StyleGuideScreen} options={{ title: SALON_NAME }} />
+        <Stack.Screen name="Home" component={HomeScreen} options={{ title: SALON_NAME }} />
       )}
     </Stack.Navigator>
   );

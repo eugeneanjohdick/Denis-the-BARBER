@@ -7,5 +7,16 @@
   "styleGuide.bodySample": "Corps de texte — sans-serif, pour la lisibilité au quotidien.",
   "styleGuide.buttonPrimary": "Réserver maintenant",
   "styleGuide.buttonSecondary": "Annuler",
-  "styleGuide.languageToggle": "English"
+  "styleGuide.languageToggle": "English",
+  "home.tagline": "Réservez votre rendez-vous en quelques instants.",
+  "home.bookNow": "Réserver maintenant",
+  "home.hoursTitle": "Horaires",
+  "home.hoursClosed": "Fermé le lundi",
+  "home.hoursOpen": "Mardi à dimanche : 9h30–12h00, puis 13h00–22h30",
+  "home.addressTitle": "Adresse",
+  "home.addressValue": "Deido (Bonateki), Douala, Cameroun",
+  "home.contactTitle": "Contacter le salon",
+  "home.whatsappDenis": "WhatsApp Denis",
+  "home.whatsappCollins": "WhatsApp Collins",
+  "home.photoPlaceholder": "Photo du salon à venir"
 }
