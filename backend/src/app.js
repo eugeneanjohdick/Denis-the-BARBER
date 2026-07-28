@@ -1,6 +1,7 @@
 const express = require("express");
 const debugRouter = require("./routes/debug");
 const authRouter = require("./routes/auth");
+const availabilityRouter = require("./routes/availability");
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.get("/health", (req, res) => {
 
 app.use("/debug", debugRouter);
 app.use("/auth", authRouter);
+app.use("/availability", availabilityRouter);
 
 app.use((err, req, res, next) => {
   console.error(err);
