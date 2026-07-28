@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const debugRouter = require("./routes/debug");
 const authRouter = require("./routes/auth");
 const availabilityRouter = require("./routes/availability");
@@ -6,6 +7,7 @@ const appointmentsRouter = require("./routes/appointments");
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {

@@ -7,6 +7,7 @@ import { Inter_400Regular, Inter_500Medium, Inter_600SemiBold } from "@expo-goog
 import RootNavigator from "./src/navigation/RootNavigator";
 import { colors } from "./src/theme";
 import { LanguageProvider } from "./src/i18n/LanguageContext";
+import { AuthProvider } from "./src/auth/AuthContext";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -24,10 +25,12 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <LanguageProvider>
-        <NavigationContainer>
-          <RootNavigator />
-        </NavigationContainer>
-        <StatusBar style="auto" />
+        <AuthProvider>
+          <NavigationContainer>
+            <RootNavigator />
+          </NavigationContainer>
+          <StatusBar style="auto" />
+        </AuthProvider>
       </LanguageProvider>
     </SafeAreaProvider>
   );
