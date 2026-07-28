@@ -1,8 +1,10 @@
 import { View, ScrollView, StyleSheet, Linking } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { colors, spacing, radius } from "../theme";
 import { SALON_NAME } from "../constants/brand";
 import { WHATSAPP_DENIS, WHATSAPP_COLLINS, whatsappUrl } from "../constants/contact";
 import { useTranslation } from "../i18n/LanguageContext";
+import { useAuth } from "../auth/AuthContext";
 import Heading from "../components/Heading";
 import BodyText from "../components/BodyText";
 import Button from "../components/Button";
@@ -10,6 +12,8 @@ import Card from "../components/Card";
 
 export default function HomeScreen() {
   const { t } = useTranslation();
+  const navigation = useNavigation();
+  const { isAuthenticated } = useAuth();
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
@@ -31,6 +35,13 @@ export default function HomeScreen() {
       <BodyText style={styles.tagline}>{t("home.tagline")}</BodyText>
 
       <Button label={t("home.bookNow")} variant="primary" onPress={() => {}} style={styles.bookButton} />
+
+      <Button
+        label={t(isAuthenticated ? "home.myAccount" : "home.login")}
+        variant="secondary"
+        onPress={() => navigation.navigate(isAuthenticated ? "Profile" : "PhoneLogin")}
+        style={styles.accountButton}
+      />
 
       <Card variant="light" style={styles.card}>
         <Heading level={3}>{t("home.hoursTitle")}</Heading>
@@ -99,6 +110,11 @@ const styles = StyleSheet.create({
     marginBottom: spacing.lg,
   },
   bookButton: {
+    width: "100%",
+    maxWidth: 320,
+    marginBottom: spacing.md,
+  },
+  accountButton: {
     width: "100%",
     maxWidth: 320,
     marginBottom: spacing.xl,

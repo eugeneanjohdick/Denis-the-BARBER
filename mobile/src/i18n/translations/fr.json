@@ -18,5 +18,20 @@
   "home.contactTitle": "Contacter le salon",
   "home.whatsappDenis": "WhatsApp Denis",
   "home.whatsappCollins": "WhatsApp Collins",
-  "home.photoPlaceholder": "Photo du salon à venir"
+  "home.photoPlaceholder": "Photo du salon à venir",
+  "home.myAccount": "Mon compte",
+  "home.login": "Se connecter",
+  "auth.phoneTitle": "Connexion",
+  "auth.phoneSubtitle": "Entrez votre numéro WhatsApp pour recevoir un code.",
+  "auth.phonePlaceholder": "+237XXXXXXXXX",
+  "auth.sendCode": "Recevoir le code",
+  "auth.sending": "Envoi...",
+  "auth.otpTitle": "Code de vérification",
+  "auth.otpSubtitle": "Entrez le code reçu par WhatsApp.",
+  "auth.otpPlaceholder": "000000",
+  "auth.verify": "Valider",
+  "auth.verifying": "Vérification...",
+  "auth.genericError": "Une erreur est survenue, réessayez.",
+  "profile.title": "Mon profil",
+  "profile.logout": "Se déconnecter"
 }
