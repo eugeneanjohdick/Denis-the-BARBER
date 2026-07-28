@@ -1,6 +1,7 @@
 const airtableClient = require("./airtableClient");
 const { cachedList } = require("./airtableCache");
 const { computeAvailableSlots } = require("./availabilityCalculator");
+const { parseTimeToMinutes } = require("./timeUtils");
 const { SALON_UTC_OFFSET_HOURS } = require("./businessRules");
 
 const DAY_NAMES = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
@@ -78,4 +79,13 @@ async function getAvailableSlots({ staffId, serviceDurationMinutes, date, minSta
   });
 }
 
-module.exports = { getAvailableSlots, frenchDayName };
+// Inverse de isoToLocalMinutes : heure locale ("HH:mm") sur une date donnee -> instant UTC ISO.
+function localDateTimeToUtcIso(dateStr, timeStr) {
+  const [y, m, d] = dateStr.split("-").map(Number);
+  const totalMinutes = parseTimeToMinutes(timeStr);
+  const h = Math.floor(totalMinutes / 60);
+  const min = totalMinutes % 60;
+  return new Date(Date.UTC(y, m - 1, d, h - SALON_UTC_OFFSET_HOURS, min)).toISOString();
+}
+
+module.exports = { getAvailableSlots, frenchDayName, localDateTimeToUtcIso };

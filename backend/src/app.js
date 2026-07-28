@@ -2,6 +2,7 @@ const express = require("express");
 const debugRouter = require("./routes/debug");
 const authRouter = require("./routes/auth");
 const availabilityRouter = require("./routes/availability");
+const appointmentsRouter = require("./routes/appointments");
 
 const app = express();
 
@@ -24,10 +25,14 @@ app.get("/health", (req, res) => {
 app.use("/debug", debugRouter);
 app.use("/auth", authRouter);
 app.use("/availability", availabilityRouter);
+app.use("/appointments", appointmentsRouter);
 
 app.use((err, req, res, next) => {
   console.error(err);
-  res.status(err.status || 500).json({ error: "Erreur serveur" });
+  const status = err.status || 500;
+  // err.status signale une erreur metier volontaire (message safe a exposer) ;
+  // sans status, on masque le detail interne au client.
+  res.status(status).json({ error: err.status ? err.message : "Erreur serveur" });
 });
 
 module.exports = app;
