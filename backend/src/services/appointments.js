@@ -60,4 +60,51 @@ async function createAppointment({ clientId, staffId, serviceId, date, start }) 
   });
 }
 
-module.exports = { createAppointment };
+const CANCELLATION_WINDOW_HOURS = 24;
+
+async function cancelAppointment({ appointmentId, actorId, actorRole }) {
+  let appointment;
+  try {
+    appointment = await airtableClient.getById("RendezVous", appointmentId);
+  } catch (e) {
+    const err = new Error("Rendez-vous introuvable");
+    err.status = 404;
+    throw err;
+  }
+
+  if (actorRole === "client" && !(appointment.client || []).includes(actorId)) {
+    const err = new Error("Ce rendez-vous ne vous appartient pas");
+    err.status = 403;
+    throw err;
+  }
+
+  if (appointment.status !== "Confirmé") {
+    const err = new Error("Ce rendez-vous ne peut plus être annulé");
+    err.status = 409;
+    throw err;
+  }
+
+  if (actorRole === "client") {
+    const hoursUntilStart = (new Date(appointment.start_datetime) - Date.now()) / (1000 * 60 * 60);
+    if (hoursUntilStart < CANCELLATION_WINDOW_HOURS) {
+      const err = new Error("Passé le délai d'annulation gratuite (24h avant le rendez-vous)");
+      err.status = 403;
+      throw err;
+    }
+  }
+
+  const [updated] = await airtableClient.batchUpdate("RendezVous", [
+    {
+      id: appointmentId,
+      fields: {
+        status: "Annulé",
+        cancelled_at: new Date().toISOString(),
+        cancelled_by: actorRole === "admin" ? "Admin" : "Client",
+      },
+    },
+  ]);
+
+  return updated;
+}
+
+module.exports = { createAppointment, cancelAppointment };

@@ -1,6 +1,6 @@
 const express = require("express");
 const { requireAuth } = require("../middlewares/auth");
-const { createAppointment } = require("../services/appointments");
+const { createAppointment, cancelAppointment } = require("../services/appointments");
 
 const router = express.Router();
 
@@ -27,6 +27,20 @@ router.post("/", requireAuth, async (req, res, next) => {
     });
 
     res.status(201).json({ appointment });
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post("/:id/cancel", requireAuth, async (req, res, next) => {
+  try {
+    const appointment = await cancelAppointment({
+      appointmentId: req.params.id,
+      actorId: req.auth.sub,
+      actorRole: req.auth.role,
+    });
+
+    res.status(200).json({ appointment });
   } catch (err) {
     next(err);
   }

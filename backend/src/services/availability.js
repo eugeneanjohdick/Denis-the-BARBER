@@ -36,8 +36,11 @@ function localDateUtcRange(dateStr) {
   return { startUtc, endUtc };
 }
 
-async function getAvailableSlots({ staffId, serviceDurationMinutes, date, minStartMinutes = 0 }) {
+async function getAvailableSlots({ staffId, serviceDurationMinutes, date }) {
   const dayName = frenchDayName(date);
+
+  const nowIso = new Date().toISOString();
+  const minStartMinutes = isoToLocalDateString(nowIso) === date ? isoToLocalMinutes(nowIso) : 0;
 
   const [plannings, exceptions, closures] = await Promise.all([
     cachedList("Plannings_Coiffeur"),
