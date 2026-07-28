@@ -61,7 +61,7 @@ async function getAvailableSlots({ staffId, serviceDurationMinutes, date, minSta
 
   const { startUtc, endUtc } = localDateUtcRange(date);
   const appointments = await airtableClient.list("RendezVous", {
-    filterByFormula: `AND(IS_AFTER({start_datetime}, "${startUtc.toISOString()}"), IS_BEFORE({start_datetime}, "${endUtc.toISOString()}"), LOWER({status})="confirmé")`,
+    filterByFormula: `AND(IS_AFTER({start_datetime}, "${startUtc.toISOString()}"), IS_BEFORE({start_datetime}, "${endUtc.toISOString()}"), {status}="Confirmé")`,
   });
 
   const busyIntervals = appointments
