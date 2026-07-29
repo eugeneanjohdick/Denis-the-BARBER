@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, Image, Pressable } from "react-native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { colors, spacing, radius } from "../theme";
 import { useTranslation } from "../i18n/LanguageContext";
 import { getCoiffeurs, ApiError } from "../services/api";
@@ -10,6 +11,8 @@ import Card from "../components/Card";
 
 export default function StaffSelectionScreen() {
   const { language, t } = useTranslation();
+  const navigation = useNavigation();
+  const { params } = useRoute();
   const [staff, setStaff] = useState([]);
   const [selectedId, setSelectedId] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -53,7 +56,7 @@ export default function StaffSelectionScreen() {
       <Button
         label={t("staff.continue")}
         variant="primary"
-        onPress={() => {}}
+        onPress={() => navigation.navigate("SlotSelection", { serviceId: params.serviceId, staffId: selectedId })}
         disabled={!selectedId}
         style={styles.continueButton}
       />

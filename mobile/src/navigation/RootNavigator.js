@@ -6,6 +6,7 @@ import OtpVerifyScreen from "../screens/OtpVerifyScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import ServiceSelectionScreen from "../screens/ServiceSelectionScreen";
 import StaffSelectionScreen from "../screens/StaffSelectionScreen";
+import SlotSelectionScreen from "../screens/SlotSelectionScreen";
 import { SALON_NAME } from "../constants/brand";
 import { useTranslation } from "../i18n/LanguageContext";
 
@@ -33,6 +34,11 @@ export default function RootNavigator() {
             name="StaffSelection"
             component={StaffSelectionScreen}
             options={{ title: t("staff.title") }}
+          />
+          <Stack.Screen
+            name="SlotSelection"
+            component={SlotSelectionScreen}
+            options={{ title: t("slot.title") }}
           />
         </>
       )}

@@ -39,3 +39,8 @@ export function getServices() {
 export function getCoiffeurs() {
   return apiFetch("/coiffeurs");
 }
+
+export function getAvailability({ staffId, serviceId, date, token }) {
+  const query = `staff=${encodeURIComponent(staffId)}&service=${encodeURIComponent(serviceId)}&date=${encodeURIComponent(date)}`;
+  return apiFetch(`/availability?${query}`, { token });
+}

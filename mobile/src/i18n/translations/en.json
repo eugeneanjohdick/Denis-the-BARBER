@@ -41,5 +41,12 @@
   "staff.title": "Choose your barber",
   "staff.loading": "Loading barbers...",
   "staff.loadError": "Couldn't load barbers.",
-  "staff.continue": "Continue"
+  "staff.continue": "Continue",
+  "slot.title": "Choose a time slot",
+  "slot.loading": "Loading time slots...",
+  "slot.loadError": "Couldn't load time slots.",
+  "slot.none": "No slots available that day.",
+  "slot.continue": "Continue",
+  "slot.loginRequiredTitle": "Login required",
+  "slot.loginRequiredBody": "Log in to see available time slots and book."
 }
