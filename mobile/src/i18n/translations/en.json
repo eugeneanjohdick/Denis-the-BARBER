@@ -48,5 +48,13 @@
   "slot.none": "No slots available that day.",
   "slot.continue": "Continue",
   "slot.loginRequiredTitle": "Login required",
-  "slot.loginRequiredBody": "Log in to see available time slots and book."
+  "slot.loginRequiredBody": "Log in to see available time slots and book.",
+  "confirmation.title": "Confirm your appointment",
+  "confirmation.loading": "Loading...",
+  "confirmation.loadError": "Something went wrong, please try again.",
+  "confirmation.confirm": "Confirm appointment",
+  "confirmation.confirming": "Confirming...",
+  "confirmation.successTitle": "Appointment confirmed",
+  "confirmation.successBody": "Your appointment has been booked. See you soon at Denis the BARBER!",
+  "confirmation.backHome": "Back to home"
 }

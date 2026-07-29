@@ -48,5 +48,13 @@
   "slot.none": "Aucun créneau disponible ce jour-là.",
   "slot.continue": "Continuer",
   "slot.loginRequiredTitle": "Connexion requise",
-  "slot.loginRequiredBody": "Connecte-toi pour voir les créneaux disponibles et réserver."
+  "slot.loginRequiredBody": "Connecte-toi pour voir les créneaux disponibles et réserver.",
+  "confirmation.title": "Confirmer le rendez-vous",
+  "confirmation.loading": "Chargement...",
+  "confirmation.loadError": "Une erreur est survenue, réessayez.",
+  "confirmation.confirm": "Confirmer le rendez-vous",
+  "confirmation.confirming": "Confirmation...",
+  "confirmation.successTitle": "Rendez-vous confirmé",
+  "confirmation.successBody": "Ton rendez-vous a bien été enregistré. À bientôt chez Denis the BARBER !",
+  "confirmation.backHome": "Retour à l'accueil"
 }

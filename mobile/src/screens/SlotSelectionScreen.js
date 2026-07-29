@@ -53,7 +53,7 @@ export default function SlotSelectionScreen() {
     setLoading(true);
     setError(null);
     getAvailability({ staffId, serviceId, date: toDateString(selectedDate), token })
-      .then(setSlots)
+      .then((data) => setSlots(data.slots))
       .catch((err) => setError(err instanceof ApiError ? err.message : t("slot.loadError")))
       .finally(() => setLoading(false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -130,7 +130,15 @@ export default function SlotSelectionScreen() {
       <Button
         label={t("slot.continue")}
         variant="primary"
-        onPress={() => {}}
+        onPress={() =>
+          navigation.navigate("Confirmation", {
+            serviceId,
+            staffId,
+            date: toDateString(selectedDate),
+            start: selectedSlot.start,
+            end: selectedSlot.end,
+          })
+        }
         disabled={!selectedSlot}
         style={styles.continueButton}
       />
