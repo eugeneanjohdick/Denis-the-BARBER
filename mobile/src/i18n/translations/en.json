@@ -37,5 +37,9 @@
   "service.title": "Choose a service",
   "service.loading": "Loading services...",
   "service.loadError": "Couldn't load services.",
-  "service.continue": "Continue"
+  "service.continue": "Continue",
+  "staff.title": "Choose your barber",
+  "staff.loading": "Loading barbers...",
+  "staff.loadError": "Couldn't load barbers.",
+  "staff.continue": "Continue"
 }

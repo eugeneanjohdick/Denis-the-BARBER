@@ -37,5 +37,9 @@
   "service.title": "Choisissez une prestation",
   "service.loading": "Chargement des prestations...",
   "service.loadError": "Impossible de charger les prestations.",
-  "service.continue": "Continuer"
+  "service.continue": "Continuer",
+  "staff.title": "Choisissez votre coiffeur",
+  "staff.loading": "Chargement des coiffeurs...",
+  "staff.loadError": "Impossible de charger les coiffeurs.",
+  "staff.continue": "Continuer"
 }

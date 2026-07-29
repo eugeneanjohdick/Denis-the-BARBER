@@ -5,6 +5,7 @@ const authRouter = require("./routes/auth");
 const availabilityRouter = require("./routes/availability");
 const appointmentsRouter = require("./routes/appointments");
 const servicesRouter = require("./routes/services");
+const coiffeursRouter = require("./routes/coiffeurs");
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.use("/auth", authRouter);
 app.use("/availability", availabilityRouter);
 app.use("/appointments", appointmentsRouter);
 app.use("/services", servicesRouter);
+app.use("/coiffeurs", coiffeursRouter);
 
 app.use((err, req, res, next) => {
   console.error(err);

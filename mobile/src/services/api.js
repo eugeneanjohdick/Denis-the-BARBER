@@ -35,3 +35,7 @@ export function getHealth() {
 export function getServices() {
   return apiFetch("/services");
 }
+
+export function getCoiffeurs() {
+  return apiFetch("/coiffeurs");
+}
