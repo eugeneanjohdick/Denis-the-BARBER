@@ -20,6 +20,9 @@ Application mobile (Android + iOS) de réservation de rendez-vous pour le salon 
 - **WhatsApp** : Meta Cloud API officiel (pas Twilio), niveau gratuit avec numéro de test. Templates pré-approuvés nécessaires pour les rappels envoyés hors fenêtre de 24h.
 - **Distribution de test** : pas de comptes développeur Apple/Google Play pour l'instant. Distribution via Expo Go + APK Android (EAS Build, profil preview). Comptes stores ouverts seulement à la mise en production réelle.
 
+## Règles de sécurité opérationnelle
+- **Toute suppression ou modification en masse sur la vraie base Airtable** (pas seulement les suppressions filtrées par un champ partagé) : lister d'abord les `recordId` exacts qui seront touchés et les montrer à l'utilisateur pour confirmation, avant d'exécuter — même si le nombre semble faible ou évident. Voir `feedback_airtable_deletion_safety` en Memory pour l'incident qui a motivé cette règle.
+
 ## Statut actuel (2026-07-28)
 Les 13 tables Airtable sont créées. Le backend Node/Express (Phase 3) est fait : structure du projet, config/env validée, couche d'accès Airtable avec cache + compteur d'appels, health-check + pingeur externe, authentification (JWT, OTP WhatsApp client, login_username+PIN admin), calcul des créneaux disponibles, création et annulation de rendez-vous — tout testé avec de vraies données Airtable et un vrai numéro WhatsApp, poussé sur [github.com/eugeneanjohdick/Denis-the-BARBER](https://github.com/eugeneanjohdick/Denis-the-BARBER).
 

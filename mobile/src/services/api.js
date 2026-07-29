@@ -44,3 +44,11 @@ export function getAvailability({ staffId, serviceId, date, token }) {
   const query = `staff=${encodeURIComponent(staffId)}&service=${encodeURIComponent(serviceId)}&date=${encodeURIComponent(date)}`;
   return apiFetch(`/availability?${query}`, { token });
 }
+
+export function getAppointments({ token }) {
+  return apiFetch("/appointments", { token });
+}
+
+export function cancelAppointment({ appointmentId, token }) {
+  return apiFetch(`/appointments/${appointmentId}/cancel`, { method: "POST", token });
+}

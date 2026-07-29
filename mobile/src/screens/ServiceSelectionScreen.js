@@ -4,14 +4,11 @@ import { useNavigation } from "@react-navigation/native";
 import { colors, spacing, radius } from "../theme";
 import { useTranslation } from "../i18n/LanguageContext";
 import { getServices, ApiError } from "../services/api";
+import { formatPrice } from "../utils/format";
 import Heading from "../components/Heading";
 import BodyText from "../components/BodyText";
 import Button from "../components/Button";
 import Card from "../components/Card";
-
-function formatPrice(amount) {
-  return `${String(amount).replace(/\B(?=(\d{3})+(?!\d))/g, " ")} FCFA`;
-}
 
 export default function ServiceSelectionScreen() {
   const { language, t } = useTranslation();

@@ -22,6 +22,12 @@ export default function ProfileScreen({ navigation }) {
       </Heading>
       <BodyText style={styles.phone}>{client?.phone}</BodyText>
 
+      <Button
+        label={t("profile.myAppointments")}
+        variant="primary"
+        onPress={() => navigation.navigate("History")}
+        style={styles.myAppointmentsButton}
+      />
       <Button label={t("profile.logout")} variant="secondary" onPress={handleLogout} />
     </View>
   );
@@ -39,5 +45,8 @@ const styles = StyleSheet.create({
   },
   phone: {
     marginBottom: spacing.xl,
+  },
+  myAppointmentsButton: {
+    marginBottom: spacing.md,
   },
 });

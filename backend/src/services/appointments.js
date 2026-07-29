@@ -60,6 +60,13 @@ async function createAppointment({ clientId, staffId, serviceId, date, start }) 
   });
 }
 
+async function listAppointmentsForClient({ clientId }) {
+  const appointments = await airtableClient.list("RendezVous");
+  return appointments
+    .filter((a) => a.client && a.client.includes(clientId))
+    .sort((a, b) => new Date(b.start_datetime) - new Date(a.start_datetime));
+}
+
 const CANCELLATION_WINDOW_HOURS = 24;
 
 async function cancelAppointment({ appointmentId, actorId, actorRole }) {
@@ -107,4 +114,4 @@ async function cancelAppointment({ appointmentId, actorId, actorRole }) {
   return updated;
 }
 
-module.exports = { createAppointment, cancelAppointment };
+module.exports = { createAppointment, cancelAppointment, listAppointmentsForClient };

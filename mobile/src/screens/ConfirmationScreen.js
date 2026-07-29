@@ -5,38 +5,11 @@ import { colors, spacing } from "../theme";
 import { useTranslation } from "../i18n/LanguageContext";
 import { useAuth } from "../auth/AuthContext";
 import { getServices, getCoiffeurs, apiFetch, ApiError } from "../services/api";
+import { formatDate, formatPrice } from "../utils/format";
 import Heading from "../components/Heading";
 import BodyText from "../components/BodyText";
 import Button from "../components/Button";
 import Card from "../components/Card";
-
-const DAY_NAMES = {
-  fr: ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"],
-  en: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-};
-
-const MONTH_NAMES = {
-  fr: [
-    "janvier", "février", "mars", "avril", "mai", "juin",
-    "juillet", "août", "septembre", "octobre", "novembre", "décembre",
-  ],
-  en: [
-    "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December",
-  ],
-};
-
-function formatDate(dateStr, language) {
-  const [y, m, d] = dateStr.split("-").map(Number);
-  const date = new Date(y, m - 1, d);
-  const dayName = DAY_NAMES[language][date.getDay()];
-  const monthName = MONTH_NAMES[language][m - 1];
-  return language === "en" ? `${dayName}, ${monthName} ${d}` : `${dayName} ${d} ${monthName}`;
-}
-
-function formatPrice(amount) {
-  return `${String(amount).replace(/\B(?=(\d{3})+(?!\d))/g, " ")} FCFA`;
-}
 
 export default function ConfirmationScreen() {
   const { language, t } = useTranslation();

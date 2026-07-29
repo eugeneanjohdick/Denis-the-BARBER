@@ -34,6 +34,7 @@
   "auth.genericError": "Something went wrong, please try again.",
   "profile.title": "My profile",
   "profile.logout": "Log out",
+  "profile.myAppointments": "My appointments",
   "service.title": "Choose a service",
   "service.loading": "Loading services...",
   "service.loadError": "Couldn't load services.",
@@ -56,5 +57,17 @@
   "confirmation.confirming": "Confirming...",
   "confirmation.successTitle": "Appointment confirmed",
   "confirmation.successBody": "Your appointment has been booked. See you soon at Denis the BARBER!",
-  "confirmation.backHome": "Back to home"
+  "confirmation.backHome": "Back to home",
+  "history.title": "My appointments",
+  "history.loading": "Loading your appointments...",
+  "history.loadError": "Couldn't load your appointments.",
+  "history.empty": "No appointments yet.",
+  "history.statusConfirmed": "Confirmed",
+  "history.statusCancelled": "Cancelled",
+  "history.cancel": "Cancel",
+  "history.cancelling": "Cancelling...",
+  "history.cancelConfirmBody": "Cancel this appointment? This cannot be undone.",
+  "history.cancelConfirmNo": "No",
+  "history.cancelConfirmYes": "Yes, cancel",
+  "history.cancelError": "Couldn't cancel this appointment."
 }

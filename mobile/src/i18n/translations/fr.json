@@ -34,6 +34,7 @@
   "auth.genericError": "Une erreur est survenue, réessayez.",
   "profile.title": "Mon profil",
   "profile.logout": "Se déconnecter",
+  "profile.myAppointments": "Mes rendez-vous",
   "service.title": "Choisissez une prestation",
   "service.loading": "Chargement des prestations...",
   "service.loadError": "Impossible de charger les prestations.",
@@ -56,5 +57,17 @@
   "confirmation.confirming": "Confirmation...",
   "confirmation.successTitle": "Rendez-vous confirmé",
   "confirmation.successBody": "Ton rendez-vous a bien été enregistré. À bientôt chez Denis the BARBER !",
-  "confirmation.backHome": "Retour à l'accueil"
+  "confirmation.backHome": "Retour à l'accueil",
+  "history.title": "Mes rendez-vous",
+  "history.loading": "Chargement de l'historique...",
+  "history.loadError": "Impossible de charger l'historique.",
+  "history.empty": "Aucun rendez-vous pour l'instant.",
+  "history.statusConfirmed": "Confirmé",
+  "history.statusCancelled": "Annulé",
+  "history.cancel": "Annuler",
+  "history.cancelling": "Annulation...",
+  "history.cancelConfirmBody": "Annuler ce rendez-vous ? Cette action est définitive.",
+  "history.cancelConfirmNo": "Non",
+  "history.cancelConfirmYes": "Oui, annuler",
+  "history.cancelError": "Impossible d'annuler ce rendez-vous."
 }
