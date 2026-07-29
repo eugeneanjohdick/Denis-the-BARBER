@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState, useCallback } from "rea
 import * as SecureStore from "expo-secure-store";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const TOKEN_KEY = "denis-the-barber:admin-auth-token";
+const TOKEN_KEY = "denis-the-barber-admin-auth-token";
 const STAFF_KEY = "denis-the-barber:admin-auth-staff";
 
 const AdminAuthContext = createContext(null);

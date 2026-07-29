@@ -9,6 +9,12 @@ const coiffeursRouter = require("./routes/coiffeurs");
 
 const app = express();
 
+// Render (et Cloudflare devant) fait transiter les requetes par un seul proxy
+// de confiance : sans ca, req.ip renvoie l'IP du proxy pour tout le monde et
+// les rate limiters (voir middlewares/rateLimit.js) partagent un seul quota
+// entre tous les clients au lieu d'un quota par IP reelle.
+app.set("trust proxy", 1);
+
 app.use(cors());
 app.use(express.json());
 
