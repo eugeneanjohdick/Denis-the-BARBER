@@ -34,7 +34,12 @@ export default function HomeScreen() {
       </Heading>
       <BodyText style={styles.tagline}>{t("home.tagline")}</BodyText>
 
-      <Button label={t("home.bookNow")} variant="primary" onPress={() => {}} style={styles.bookButton} />
+      <Button
+        label={t("home.bookNow")}
+        variant="primary"
+        onPress={() => navigation.navigate("ServiceSelection")}
+        style={styles.bookButton}
+      />
 
       <Button
         label={t(isAuthenticated ? "home.myAccount" : "home.login")}

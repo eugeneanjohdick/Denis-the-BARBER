@@ -4,6 +4,7 @@ import LanguageSelectionScreen from "../screens/LanguageSelectionScreen";
 import PhoneLoginScreen from "../screens/PhoneLoginScreen";
 import OtpVerifyScreen from "../screens/OtpVerifyScreen";
 import ProfileScreen from "../screens/ProfileScreen";
+import ServiceSelectionScreen from "../screens/ServiceSelectionScreen";
 import { SALON_NAME } from "../constants/brand";
 import { useTranslation } from "../i18n/LanguageContext";
 
@@ -22,6 +23,11 @@ export default function RootNavigator() {
           <Stack.Screen name="PhoneLogin" component={PhoneLoginScreen} options={{ title: t("auth.phoneTitle") }} />
           <Stack.Screen name="OtpVerify" component={OtpVerifyScreen} options={{ title: t("auth.otpTitle") }} />
           <Stack.Screen name="Profile" component={ProfileScreen} options={{ title: t("profile.title") }} />
+          <Stack.Screen
+            name="ServiceSelection"
+            component={ServiceSelectionScreen}
+            options={{ title: t("service.title") }}
+          />
         </>
       )}
     </Stack.Navigator>

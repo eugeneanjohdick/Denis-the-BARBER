@@ -33,5 +33,9 @@
   "auth.verifying": "Vérification...",
   "auth.genericError": "Une erreur est survenue, réessayez.",
   "profile.title": "Mon profil",
-  "profile.logout": "Se déconnecter"
+  "profile.logout": "Se déconnecter",
+  "service.title": "Choisissez une prestation",
+  "service.loading": "Chargement des prestations...",
+  "service.loadError": "Impossible de charger les prestations.",
+  "service.continue": "Continuer"
 }

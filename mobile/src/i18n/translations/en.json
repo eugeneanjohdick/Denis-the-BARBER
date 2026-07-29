@@ -33,5 +33,9 @@
   "auth.verifying": "Verifying...",
   "auth.genericError": "Something went wrong, please try again.",
   "profile.title": "My profile",
-  "profile.logout": "Log out"
+  "profile.logout": "Log out",
+  "service.title": "Choose a service",
+  "service.loading": "Loading services...",
+  "service.loadError": "Couldn't load services.",
+  "service.continue": "Continue"
 }

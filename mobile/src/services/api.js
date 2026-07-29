@@ -31,3 +31,7 @@ export async function apiFetch(path, { method = "GET", body, token } = {}) {
 export function getHealth() {
   return apiFetch("/health");
 }
+
+export function getServices() {
+  return apiFetch("/services");
+}
