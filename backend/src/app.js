@@ -44,12 +44,7 @@ app.use((err, req, res, next) => {
   const status = err.status || 500;
   // err.status signale une erreur metier volontaire (message safe a exposer) ;
   // sans status, on masque le detail interne au client.
-  res.status(status).json({
-    error: err.status ? err.message : "Erreur serveur",
-    // TEMP_DEBUG (2026-07-29) : expose le detail Meta pour diagnostiquer le
-    // 500 sur /auth/otp/request en prod. A retirer des que diagnostique.
-    ...(err.metaError ? { metaError: err.metaError, rawMessage: err.message } : {}),
-  });
+  res.status(status).json({ error: err.status ? err.message : "Erreur serveur" });
 });
 
 module.exports = app;
