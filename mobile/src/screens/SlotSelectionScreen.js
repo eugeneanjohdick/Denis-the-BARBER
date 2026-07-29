@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { View, ScrollView, StyleSheet, Pressable } from "react-native";
-import { useNavigation, useRoute } from "@react-navigation/native";
+import { useNavigation, useRoute, useIsFocused } from "@react-navigation/native";
 import { colors, spacing, radius } from "../theme";
 import { useTranslation } from "../i18n/LanguageContext";
 import { useAuth } from "../auth/AuthContext";
@@ -38,6 +38,7 @@ export default function SlotSelectionScreen() {
   const { params } = useRoute();
   const { serviceId, staffId } = params;
   const { isAuthenticated, token } = useAuth();
+  const isFocused = useIsFocused();
 
   const days = useMemo(() => buildUpcomingDays(14), []);
   const [selectedDate, setSelectedDate] = useState(days[0]);
@@ -47,7 +48,7 @@ export default function SlotSelectionScreen() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (!isAuthenticated) return;
+    if (!isAuthenticated || !isFocused) return;
     setSelectedSlot(null);
     setLoading(true);
     setError(null);
@@ -56,7 +57,7 @@ export default function SlotSelectionScreen() {
       .catch((err) => setError(err instanceof ApiError ? err.message : t("slot.loadError")))
       .finally(() => setLoading(false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedDate, isAuthenticated]);
+  }, [selectedDate, isAuthenticated, isFocused]);
 
   if (!isAuthenticated) {
     return (
@@ -68,6 +69,10 @@ export default function SlotSelectionScreen() {
         <Button label={t("home.login")} variant="primary" onPress={() => navigation.navigate("PhoneLogin")} />
       </View>
     );
+  }
+
+  if (!isFocused) {
+    return null;
   }
 
   return (
