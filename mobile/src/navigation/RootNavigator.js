@@ -9,6 +9,8 @@ import StaffSelectionScreen from "../screens/StaffSelectionScreen";
 import SlotSelectionScreen from "../screens/SlotSelectionScreen";
 import ConfirmationScreen from "../screens/ConfirmationScreen";
 import HistoryScreen from "../screens/HistoryScreen";
+import AdminLoginScreen from "../screens/AdminLoginScreen";
+import AdminHomeScreen from "../screens/AdminHomeScreen";
 import { SALON_NAME } from "../constants/brand";
 import { useTranslation } from "../i18n/LanguageContext";
 
@@ -48,6 +50,12 @@ export default function RootNavigator() {
             options={{ title: t("confirmation.title") }}
           />
           <Stack.Screen name="History" component={HistoryScreen} options={{ title: t("history.title") }} />
+          <Stack.Screen
+            name="AdminLogin"
+            component={AdminLoginScreen}
+            options={{ title: t("admin.loginTitle") }}
+          />
+          <Stack.Screen name="AdminHome" component={AdminHomeScreen} options={{ title: t("admin.homeTitle") }} />
         </>
       )}
     </Stack.Navigator>

@@ -52,3 +52,7 @@ export function getAppointments({ token }) {
 export function cancelAppointment({ appointmentId, token }) {
   return apiFetch(`/appointments/${appointmentId}/cancel`, { method: "POST", token });
 }
+
+export function adminLogin({ username, pin }) {
+  return apiFetch("/auth/admin/login", { method: "POST", body: { username, pin } });
+}

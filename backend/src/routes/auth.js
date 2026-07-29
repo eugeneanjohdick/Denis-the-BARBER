@@ -79,7 +79,7 @@ router.post("/admin/login", adminLoginLimiter, async (req, res, next) => {
     }
 
     const staff = await findStaffByUsername(username);
-    if (!staff || !staff.pin_hash) {
+    if (!staff || !staff.pin_hash || !staff.is_admin) {
       return res.status(401).json({ error: "Identifiants invalides" });
     }
 
@@ -88,8 +88,12 @@ router.post("/admin/login", adminLoginLimiter, async (req, res, next) => {
       return res.status(401).json({ error: "Identifiants invalides" });
     }
 
-    const token = signToken({ sub: staff.id, role: "admin" }, "7d");
-    res.status(200).json({ token, staff: { id: staff.id, full_name: staff.full_name } });
+    const adminLevel = staff.role === "Gérant" ? "manager" : "staff";
+    const token = signToken({ sub: staff.id, role: "admin", adminLevel }, "7d");
+    res.status(200).json({
+      token,
+      staff: { id: staff.id, full_name: staff.full_name, role: staff.role, adminLevel },
+    });
   } catch (err) {
     next(err);
   }

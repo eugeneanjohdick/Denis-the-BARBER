@@ -8,6 +8,7 @@ import RootNavigator from "./src/navigation/RootNavigator";
 import { colors } from "./src/theme";
 import { LanguageProvider } from "./src/i18n/LanguageContext";
 import { AuthProvider } from "./src/auth/AuthContext";
+import { AdminAuthProvider } from "./src/auth/AdminAuthContext";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -26,10 +27,12 @@ export default function App() {
     <SafeAreaProvider>
       <LanguageProvider>
         <AuthProvider>
-          <NavigationContainer>
-            <RootNavigator />
-          </NavigationContainer>
-          <StatusBar style="auto" />
+          <AdminAuthProvider>
+            <NavigationContainer>
+              <RootNavigator />
+            </NavigationContainer>
+            <StatusBar style="auto" />
+          </AdminAuthProvider>
         </AuthProvider>
       </LanguageProvider>
     </SafeAreaProvider>

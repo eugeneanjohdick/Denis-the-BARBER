@@ -29,4 +29,13 @@ function requireAdmin(req, res, next) {
   });
 }
 
-module.exports = { requireAuth, requireAdmin };
+function requireManager(req, res, next) {
+  requireAdmin(req, res, () => {
+    if (req.auth.adminLevel !== "manager") {
+      return res.status(403).json({ error: "Accès réservé au gérant" });
+    }
+    next();
+  });
+}
+
+module.exports = { requireAuth, requireAdmin, requireManager };

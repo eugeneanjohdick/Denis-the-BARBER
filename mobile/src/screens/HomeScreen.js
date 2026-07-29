@@ -1,10 +1,11 @@
-import { View, ScrollView, StyleSheet, Linking } from "react-native";
+import { View, ScrollView, StyleSheet, Linking, Pressable } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { colors, spacing, radius } from "../theme";
 import { SALON_NAME } from "../constants/brand";
 import { WHATSAPP_DENIS, WHATSAPP_COLLINS, whatsappUrl } from "../constants/contact";
 import { useTranslation } from "../i18n/LanguageContext";
 import { useAuth } from "../auth/AuthContext";
+import { useAdminAuth } from "../auth/AdminAuthContext";
 import Heading from "../components/Heading";
 import BodyText from "../components/BodyText";
 import Button from "../components/Button";
@@ -14,6 +15,7 @@ export default function HomeScreen() {
   const { t } = useTranslation();
   const navigation = useNavigation();
   const { isAuthenticated } = useAuth();
+  const { isAdminAuthenticated } = useAdminAuth();
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
@@ -74,6 +76,12 @@ export default function HomeScreen() {
         onPress={() => Linking.openURL(whatsappUrl(WHATSAPP_COLLINS))}
         style={styles.whatsappButton}
       />
+
+      <Pressable onPress={() => navigation.navigate(isAdminAuthenticated ? "AdminHome" : "AdminLogin")}>
+        <BodyText size="small" style={styles.proSpace}>
+          {t("home.proSpace")}
+        </BodyText>
+      </Pressable>
     </ScrollView>
   );
 }
@@ -140,5 +148,9 @@ const styles = StyleSheet.create({
     width: "100%",
     maxWidth: 320,
     marginBottom: spacing.sm,
+  },
+  proSpace: {
+    marginTop: spacing.lg,
+    opacity: 0.5,
   },
 });
