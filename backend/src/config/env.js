@@ -30,6 +30,13 @@ const config = {
     otpTemplateName: process.env.META_WHATSAPP_OTP_TEMPLATE_NAME || "hello_world",
     otpTemplateLang: process.env.META_WHATSAPP_OTP_TEMPLATE_LANG || "en_US",
   },
+  // Contournement temporaire (test terrain pendant le blocage Meta) : liste vide/absente
+  // par defaut = mecanisme totalement inactif, comportement normal pour tout le monde.
+  // Voir project_pre_production_todo en Memory - a vider avant tout lancement reel.
+  otpBypassPhones: (process.env.OTP_BYPASS_PHONES || "")
+    .split(",")
+    .map((p) => p.trim())
+    .filter(Boolean),
 };
 
 module.exports = config;

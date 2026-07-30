@@ -12,6 +12,12 @@ const router = express.Router();
 
 const PHONE_REGEX = /^\+[1-9][0-9]{7,14}$/;
 
+// Contournement temporaire (test terrain pendant le blocage Meta) : le code
+// n'est pas sensible en soi (il est destine a etre connu a l'avance par les
+// numeros listes dans OTP_BYPASS_PHONES) - seule la liste des numeros doit
+// rester pilotee par variable d'environnement, jamais codee en dur.
+const OTP_BYPASS_CODE = "123456";
+
 const otpRequestLimiter = createRateLimiter({
   windowMs: 15 * 60 * 1000,
   max: 5,
@@ -37,12 +43,16 @@ router.post("/otp/request", otpRequestLimiter, async (req, res, next) => {
       return res.status(400).json({ error: "Numéro invalide (format attendu : +237XXXXXXXXX)" });
     }
 
-    const code = createOtp(phone);
+    const isBypassPhone = config.otpBypassPhones.includes(phone);
+    const code = createOtp(phone, isBypassPhone ? OTP_BYPASS_CODE : undefined);
+
     if (config.nodeEnv === "development") {
       console.log(`[dev] Code OTP pour ${phone} : ${code}`);
     }
 
-    await sendOtpCode(phone, code);
+    if (!isBypassPhone) {
+      await sendOtpCode(phone, code);
+    }
 
     res.status(200).json({ status: "sent" });
   } catch (err) {

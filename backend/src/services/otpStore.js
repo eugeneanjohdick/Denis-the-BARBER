@@ -7,8 +7,8 @@ function generateCode() {
   return String(Math.floor(100000 + Math.random() * 900000));
 }
 
-function createOtp(phone) {
-  const code = generateCode();
+function createOtp(phone, fixedCode) {
+  const code = fixedCode || generateCode();
   store.set(phone, { code, expiresAt: Date.now() + OTP_TTL_MS, attempts: 0 });
   return code;
 }
