@@ -46,3 +46,7 @@ Les tokens de cette charte (couleurs, tailles de police, rayons, ombres) doivent
 ## Références visuelles
 
 Le dossier [references/](references/) accueillera le logo officiel et des photos réelles du salon et des coiffeurs, à fournir par l'utilisateur. Dès qu'un fichier y est présent, le consulter avant de construire un écran pour calibrer l'ambiance réelle (matières, lumière, coupe de cheveux typique) au-delà de la seule palette abstraite — les photos priment sur toute supposition esthétique.
+
+**Logo — deux versions, usages distincts (ne pas interchanger) :**
+- `logo_transparent.png` (fond transparent) : à utiliser pour tout affichage sur fond sombre dans l'app (`HomeScreen`, splash screen, tout écran/section sur fond noir ou anthracite). Le logo s'intègre directement au fond, pas besoin de carte/cercle clair en dessous.
+- `logo_fond_blanc.png` (fond blanc plein) : réservé à l'icône de l'app (`app.json` → `icon`, icône adaptative Android) et aux futures fiches Play Store / App Store, qui exigent un fond plein plutôt que transparent.

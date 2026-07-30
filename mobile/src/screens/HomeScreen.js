@@ -1,4 +1,4 @@
-import { View, ScrollView, StyleSheet, Linking, Pressable } from "react-native";
+import { View, ScrollView, StyleSheet, Linking, Pressable, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { colors, spacing, radius } from "../theme";
 import { SALON_NAME } from "../constants/brand";
@@ -20,9 +20,7 @@ export default function HomeScreen() {
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <View style={styles.logo}>
-        <Heading level={2} color={colors.gold}>
-          DB
-        </Heading>
+        <Image source={require("../../assets/logo.png")} style={styles.logoImage} resizeMode="contain" />
       </View>
 
       <View style={styles.photoPlaceholder}>
@@ -97,13 +95,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   logo: {
-    width: 64,
-    height: 64,
-    borderRadius: radius.pill,
+    width: 160,
+    height: 160,
+    borderRadius: radius.card,
     backgroundColor: colors.black,
     alignItems: "center",
     justifyContent: "center",
+    padding: spacing.sm,
     marginBottom: spacing.md,
+  },
+  logoImage: {
+    width: "100%",
+    height: "100%",
   },
   photoPlaceholder: {
     width: "100%",
